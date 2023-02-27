@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nome do seu aplicativo
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Seu aplicativo é um cardápio online que permite aos clientes ver a lista de produtos e criar um carrinho. Ao finalizar o pedido, o carrinho será enviado como mensagem para o WhatsApp do seu restaurante.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Como usar
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Acesse o site do cardápio online do seu restaurante.
+2. Selecione os produtos desejados e adicione-os ao carrinho.
+3. Quando terminar, acesse o carrinho e finalize o pedido.
+4. O carrinho será enviado automaticamente como mensagem para o WhatsApp do seu restaurante.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Tecnologias utilizadas
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- HTML
+- CSS
+- JavaScript
+- NexT
+- Firebase
+- WhatsApp API
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Como contribuir
 
-## Learn More
+Sinta-se à vontade para contribuir com melhorias para o nosso aplicativo! Basta fazer um fork deste repositório, fazer suas modificações e enviar um pull request.
 
-To learn more about Next.js, take a look at the following resources:
+## Autor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+JVCSS
