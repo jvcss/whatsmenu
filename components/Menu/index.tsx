@@ -2,8 +2,9 @@ import { useState } from "react";
 
 import { Product } from "../../types/Product";
 import Layout from "../Layout";
-import ProductCard from "../ProductCard";
+import ProductCard from "../ProductsList";
 import { Grid } from "@mui/material";
+import ProductsList from "../ProductsList";
 
 type Props = {
   cardapio: Product[];
@@ -28,16 +29,7 @@ function Menu({ cardapio }: Props) {
             12h às 22h.
           </p>
           <h2>Cardápio:</h2>
-          <Grid container spacing={2}>
-            {cardapio.map((product) => (
-              <Grid item xs={12} sm={6} md={4} key={product.id}>
-                <ProductCard
-                  product={product}
-                  addToCart={addToCart}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <ProductsList products={cardapio} addToCart={addToCart} />
         </main>
       </Layout>
     </div>
