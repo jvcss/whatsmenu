@@ -14,16 +14,19 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 const StyledListItemAvatar = styled(ListItemAvatar)(({ theme }) => ({
-  marginRight: theme.spacing(2),
+  marginLeft: theme.spacing(2),
+  alignSelf: "center",
 }));
 
 const StyledListItemText = styled(ListItemText)(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  flexDirection: "column",
+  justifyContent: "center",
 }));
 
 const StyledPriceTypography = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
+  alignSelf: "flex-end",
 }));
 
 const ProductItems = ({ product, addToCart }: Props) => {
@@ -31,20 +34,21 @@ const ProductItems = ({ product, addToCart }: Props) => {
 
   return (
     <StyledListItem>
+      <StyledListItemText>
+        <Typography variant="h6" component="h2">
+          {product.name}
+        </Typography>
+        <Typography variant="body1">{product.description}</Typography>
+        <Button variant="contained" onClick={handleClick}>
+          Adicionar ao carrinho
+        </Button>
+      </StyledListItemText>
       <StyledListItemAvatar>
         <img src={product.image} alt={product.name} width="80" height="80" />
-      </StyledListItemAvatar>
-      <StyledListItemText
-        primary={product.name}
-        secondary={product.description}
-      >
         <StyledPriceTypography variant="body1">
           R$ {product.price.toFixed(2)}
         </StyledPriceTypography>
-      </StyledListItemText>
-      <Button variant="contained" onClick={handleClick}>
-        Adicionar ao carrinho
-      </Button>
+      </StyledListItemAvatar>
     </StyledListItem>
   );
 };

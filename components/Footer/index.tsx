@@ -1,12 +1,12 @@
 import { styled } from "@mui/material";
 
-const FooterRoot = styled("footer")({
+const FooterRoot = styled("footer")(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   height: "64px",
-  backgroundColor: "#f5f5f5",
-});
+  backgroundColor: theme.palette.background.default,
+}));
 
 const FooterText = styled("p")({
   fontSize: "0.8rem",
