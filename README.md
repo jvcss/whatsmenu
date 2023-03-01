@@ -1,8 +1,8 @@
-# Nome do seu aplicativo
+# Whats Menu
 
 ## Descrição
 
-Seu aplicativo é um cardápio online que permite aos clientes ver a lista de produtos e criar um carrinho. Ao finalizar o pedido, o carrinho será enviado como mensagem para o WhatsApp do seu restaurante.
+Whats Menu é um cardápio online que permite aos clientes ver a lista de produtos e criar um carrinho. Ao finalizar o pedido, o carrinho será enviado como mensagem para o WhatsApp do seu restaurante.
 
 ## Como usar
 
