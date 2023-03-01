@@ -18,7 +18,6 @@ import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 import Footer from "../Footer";
 
-const drawerWidth = 240;
 
 type Props = {
   children: React.ReactNode;
@@ -26,7 +25,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter();
-  const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
+  const [themeMode, setThemeMode] = useState<"light" | "dark">("dark");
   const [openDrawer, setOpenDrawer] = useState(false);
   const theme = React.useMemo(
     () =>

@@ -23,6 +23,35 @@ type Product = {
       price: 5.0,
       image: "https://assets.unileversolutions.com/recipes-v2/236946.jpg",
     },
+    {
+      id: 3,
+      name: "Batata frita",
+      description: "Porção de batatas fritas",
+      price: 5.0,
+      image: "https://assets.unileversolutions.com/recipes-v2/236946.jpg",
+    },
+    {
+      id: 4,
+      name: "Batata frita",
+      description: "Porção de batatas fritas",
+      price: 5.0,
+      image: "https://assets.unileversolutions.com/recipes-v2/236946.jpg",
+    },
+    {
+      id: 5,
+      name: "Batata frita",
+      description: "Porção de batatas fritas",
+      price: 5.0,
+      image: "https://assets.unileversolutions.com/recipes-v2/236946.jpg",
+    },
+    {
+      id: 6,
+      name: "Batata frita",
+      description: "Porção de batatas fritas",
+      price: 5.0,
+      image: "https://assets.unileversolutions.com/recipes-v2/236946.jpg",
+    },
+
     // adicione mais produtos aqui
   ]
   
