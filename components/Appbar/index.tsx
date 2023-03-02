@@ -10,7 +10,6 @@ import {
   ListItemIcon,
   ListItemText,
   PaletteMode,
-  Switch,
   Toolbar,
   Typography,
   styled,

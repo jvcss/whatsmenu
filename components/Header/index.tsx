@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Typography from '@mui/material/Typography'
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -88,10 +89,11 @@ function Header({ carrinho, cartTotal }: Props) {
 */}
         <StyledShoppingCart>
           <Link href="/cart">
+            <Typography>({carrinho.length} itens - R$ {cartTotal.toFixed(2)})</Typography>
             <IconButton color="inherit">
               <ShoppingCartIcon />
             </IconButton>
-            ({carrinho.length} itens - R$ {cartTotal.toFixed(2)})
+            
           </Link>
         </StyledShoppingCart>
       </Toolbar>

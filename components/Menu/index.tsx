@@ -11,16 +11,16 @@ type Props = {
 
 
 function Menu({ cardapio }: Props) {
-  const [carrinho, setCarrinho] = useState<Product[]>([]);
-  const addToCart = (product: Product) => setCarrinho([...carrinho, product]);
-  const cartTotal = carrinho.reduce(
+  const [cart, setCart] = useState<Product[]>([]);
+  const addToCart = (product: Product) => setCart([...cart, product]);
+  const cartTotal = cart.reduce(
     (total, product) => total + product.price,
     0
   );
 
   return (
     <div>
-        <Header carrinho={carrinho} cartTotal={cartTotal} />
+        <Header carrinho={cart} cartTotal={cartTotal} />
         <main>
           <h2>Horário de funcionamento:</h2>
           <p>

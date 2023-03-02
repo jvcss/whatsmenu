@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
     const [mode, setMode] = useState<PaletteMode>("light");
-    
+
     useEffect(() => {
         const storedTheme = getStoredTheme();
         if (storedTheme) {
@@ -39,15 +39,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <TopBar
-                mode={mode}
-                onClick={() => {
-                    const newMode = mode === "dark" ? "light" : "dark";
-                    setMode(newMode);
-                    setStoredTheme(newMode);
-                }}
-            />
-            <Layout>
+
+            <Layout >
+                <TopBar
+                    mode={mode}
+                    onClick={() => {
+                        const newMode = mode === "dark" ? "light" : "dark";
+                        setMode(newMode);
+                        setStoredTheme(newMode);
+                    }}
+                />
                 <Component {...pageProps} />
             </Layout>
         </ThemeProvider>
