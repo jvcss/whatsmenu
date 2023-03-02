@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import { Product } from "../../types/Product";
-import Layout from "../Layout";
-import ProductCard from "../ProductsList";
 import { Grid } from "@mui/material";
 import ProductsList from "../ProductsList";
+import Header from "../Header";
 
 type Props = {
   cardapio: Product[];
@@ -21,7 +20,7 @@ function Menu({ cardapio }: Props) {
 
   return (
     <div>
-      <Layout>
+        <Header carrinho={carrinho} cartTotal={cartTotal} />
         <main>
           <h2>Horário de funcionamento:</h2>
           <p>
@@ -31,7 +30,7 @@ function Menu({ cardapio }: Props) {
           <h2>Cardápio:</h2>
           <ProductsList products={cardapio} addToCart={addToCart} />
         </main>
-      </Layout>
+      
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Menu from "../components/Menu";
 import { GetStaticProps } from "next";
 import { Product } from "../types/Product";
+import Header from "../components/Header";
 
 type Props = {
   cardapio: Product[];
@@ -18,5 +19,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 export default function Home({ cardapio }: Props) {
-  return <Menu cardapio={cardapio} />;
+  return (
+    <>
+      <Menu cardapio={cardapio} />
+    </>
+  );
 }
