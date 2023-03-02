@@ -1,24 +1,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShoppingCart,
-  faSun,
-  faMoon,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faWhatsapp,
-  faInstagram,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import { styled } from "@mui/material/styles";
-
 
 import styles from "../../styles/Header.module.css";
 
@@ -65,7 +56,7 @@ function Header({ carrinho, cartTotal }: Props) {
           />
           <h1>Bia Restaurent</h1>
         </StyledLogo>
-
+{/*
         <div className={styles.social}>
           <IconButton
             color="inherit"
@@ -73,7 +64,7 @@ function Header({ carrinho, cartTotal }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faWhatsapp} />
+            <WhatsAppIcon />
           </IconButton>
 
           <IconButton
@@ -82,7 +73,7 @@ function Header({ carrinho, cartTotal }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} />
+            <InstagramIcon />
           </IconButton>
 
           <IconButton
@@ -91,10 +82,10 @@ function Header({ carrinho, cartTotal }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faFacebook} />
+            <FacebookIcon />
           </IconButton>
         </div>
-
+*/}
         <StyledShoppingCart>
           <Link href="/cart">
             <IconButton color="inherit">
