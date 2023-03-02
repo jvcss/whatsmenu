@@ -4,16 +4,8 @@ import Image from "next/image";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from '@mui/material/Typography'
-import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
+
 import { styled } from "@mui/material/styles";
-
-import styles from "../../styles/Header.module.css";
-
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#FFFFFF",
@@ -31,20 +23,7 @@ const StyledLogo = styled("div")(({ theme }) => ({
   },
 }));
 
-const StyledShoppingCart = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  [theme.breakpoints.down("md")]: {
-    marginBottom: theme.spacing(1),
-  },
-}));
-
-type Props = {
-  carrinho: any[];
-  cartTotal: number;
-};
-
-function Header({ carrinho, cartTotal }: Props) {
+function BrandInfo() {
   return (
     <StyledAppBar position="static">
       <Toolbar>
@@ -57,6 +36,13 @@ function Header({ carrinho, cartTotal }: Props) {
           />
           <h1>Bia Restaurent</h1>
         </StyledLogo>
+        
+      </Toolbar>
+    </StyledAppBar>
+  );
+}
+
+export default BrandInfo;
 {/*
         <div className={styles.social}>
           <IconButton
@@ -86,19 +72,19 @@ function Header({ carrinho, cartTotal }: Props) {
             <FacebookIcon />
           </IconButton>
         </div>
-*/}
+
         <StyledShoppingCart>
           <Link href="/cart">
-            <Typography>({carrinho.length} itens - R$ {cartTotal.toFixed(2)})</Typography>
+            {cart && cartTotal ? (
+              <Typography>({cart.length} itens - R$ {cartTotal.toFixed(2)})</Typography>
+            ) :
+              <Typography>0 itens - R$ 0,0</Typography>
+            }
+
             <IconButton color="inherit">
               <ShoppingCartIcon />
             </IconButton>
-            
+
           </Link>
         </StyledShoppingCart>
-      </Toolbar>
-    </StyledAppBar>
-  );
-}
-
-export default Header;
+        */}

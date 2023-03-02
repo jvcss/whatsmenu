@@ -2,10 +2,7 @@ import { Product } from "../../types/Product";
 import { Button, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import { styled, Theme } from '@mui/material/styles';
 
-type Props = {
-  product: Product;
-  addToCart: (product: Product) => void;
-};
+
 
 const StyledListItem = styled(ListItem)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -29,6 +26,11 @@ const StyledPriceTypography = styled(Typography)(({ theme }) => ({
   alignSelf: "flex-end",
 }));
 
+type Props = {
+  product: Product;
+  addToCart: (product: Product) => void;
+
+};
 const ProductItems = ({ product, addToCart }: Props) => {
   const handleClick = () => addToCart(product);
 

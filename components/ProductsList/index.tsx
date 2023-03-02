@@ -8,11 +8,16 @@ type Props = {
   addToCart: (product: Product) => void;
 };
 
-const ProductsList = ({ products, addToCart }: Props) => {
+const ProductsList = ({ products, addToCart}: Props) => {
   return (
     <List>
       {products.map((product) => (
-        <ProductItems key={product.id} product={product} addToCart={addToCart} />
+        <ProductItems
+          key={product.id}
+          product={product}
+          addToCart={addToCart}
+          
+        />
       ))}
     </List>
   );
