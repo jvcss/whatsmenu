@@ -27,8 +27,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   } 
   else if (req.method === 'DELETE') 
   {
-    clearCart();
-    writeFileSync(CART_FILE_PATH, JSON.stringify([]));
+    const { id } = req.query;
+
+    const cartData = readFileSync(CART_FILE_PATH, 'utf8');
+    const cart = JSON.parse(cartData) as CartItem[];
+    const filteredCart = cart.filter(item => item.id !== String(id));
+
+    writeFileSync(CART_FILE_PATH, JSON.stringify(filteredCart));
     res.status(204).end();
   } 
   else {

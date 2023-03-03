@@ -9,6 +9,7 @@ import {
     ListItem,
     ListItemButton,
     ListItemIcon,
+    ListItemSecondaryAction,
     ListItemText,
     PaletteMode,
     Toolbar,
@@ -18,13 +19,14 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query"; //we will use React Query to perform this 
+import { CartItem } from "../../types/Cart";
 
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import MenuIcon from "@mui/icons-material/Menu";
+import DeleteIcon from '@mui/icons-material/Delete'
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useQuery } from "react-query"; //we will use React Query to perform this 
-import { CartItem } from "../../types/Cart";
 
 type Props = {
     mode: PaletteMode;
@@ -48,6 +50,7 @@ const SizerToolbar = styled(Toolbar)(({ theme }) => ({
 
 
 const TopBar = ({ mode, onClick }: Props) => {
+    const queryClient = useQueryClient();
     const router = useRouter();
     const customTheme = useTheme();
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -59,6 +62,22 @@ const TopBar = ({ mode, onClick }: Props) => {
     });
     const cartTotal = data?.reduce((acc: number, item: CartItem) => acc + item.price, 0);
 
+    const handleRemoveItem = (id: string) => {
+        removeItemFromCart.mutate(id);
+    };
+    const removeItemFromCart = useMutation(async (id: string) => {
+        const response = await fetch(`/api/cart?id=${id}`, {
+            method: "DELETE",
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to remove item from cart");
+        }
+    }, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("cart");
+        }
+    });
 
 
     const handleMenuItemClick = (route: string) => {
@@ -146,6 +165,11 @@ const TopBar = ({ mode, onClick }: Props) => {
                     {data?.map((item: CartItem) => (
                         <ListItem key={item.id}>
                             <ListItemText primary={item.name} secondary={`$${item.price}`} />
+                            <ListItemSecondaryAction>
+                                <IconButton onClick={() => handleRemoveItem(item.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
                         </ListItem>
                     ))}
                 </List>

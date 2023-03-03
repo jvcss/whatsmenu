@@ -1,7 +1,7 @@
 // cart.ts
 
 export type CartItem = {
-  id: number;
+  id: string;
   name: string;
   price: number;
 };

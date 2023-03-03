@@ -1,5 +1,5 @@
 import { Product } from "../types/Product";
-
+import { v4 as uuidv4 } from 'uuid';
 import { CartItem } from "../types/Cart";
 
 import { Grid } from "@mui/material";
@@ -23,7 +23,7 @@ function Home() {
     const { mutate: addToCartMutation } = useMutation(
         async (product: Product) => {
             const cartItem: CartItem = {
-                id: product.id,
+                id: uuidv4(),
                 name: product.name,
                 price: product.price,
             };
