@@ -1,5 +1,9 @@
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+
 import { useEffect, useMemo, useState } from "react";
 import { getStoredTheme, getThemeOptions, setStoredTheme } from "../theme";
 import {
@@ -11,10 +15,11 @@ import {
 import Layout from "../components/Layout";
 import TopBar from "../components/Appbar";
 
-const queryClient = new QueryClient();
+
+const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
-    
+
     const [mode, setMode] = useState<PaletteMode>("light");
     useEffect(() => {
         const storedTheme = getStoredTheme();
@@ -33,24 +38,31 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
     }, [mode]);
     const theme = useMemo(() => createTheme(getThemeOptions(mode)), [mode]);
+
+
+
+
     return (
+    <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <QueryClientProvider client={queryClient}>
 
-                <Layout >
-                    <TopBar
-                        mode={mode}
-                        onClick={() => {
-                            const newMode = mode === "dark" ? "light" : "dark";
-                            setMode(newMode);
-                            setStoredTheme(newMode);
-                        }}
-                    />
-                    <Component {...pageProps} />
-                </Layout>
-            </QueryClientProvider>
+
+            <Layout >
+                <TopBar
+                    mode={mode}
+                    onClick={() => {
+                        const newMode = mode === "dark" ? "light" : "dark";
+                        setMode(newMode);
+                        setStoredTheme(newMode);
+                    }}
+                />
+                <Component {...pageProps} />
+            </Layout>
         </ThemeProvider>
+        
+    </QueryClientProvider>
     );
 }
 export default MyApp;

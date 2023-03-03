@@ -27,17 +27,15 @@ function Home() {
                 name: product.name,
                 price: product.price,
             };
-            const res = await fetch("/api/cart", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(cartItem),
-            });
 
-            if (!res.ok) {
-                throw new Error("Failed to add item to cart");
-            }
+            // Get the current cart items from the cache
+            const currentCartItems = queryClient.getQueryData<CartItem[]>("cart") || [];
+
+            // Add the new item to the cart
+            const newCartItems = [...currentCartItems, cartItem];
+
+            // Update the cart items in the cache
+            queryClient.setQueryData("cart", newCartItems);
         },
         {
             onSuccess: () => {
@@ -45,8 +43,6 @@ function Home() {
             },
         }
     );
-
-
 
     return (
         <div>

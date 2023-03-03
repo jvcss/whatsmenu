@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+
 import { useMutation, useQuery, useQueryClient } from "react-query"; //we will use React Query to perform this 
 import { CartItem } from "../../types/Cart";
 
@@ -51,34 +52,35 @@ const SizerToolbar = styled(Toolbar)(({ theme }) => ({
 
 const TopBar = ({ mode, onClick }: Props) => {
     const queryClient = useQueryClient();
+
     const router = useRouter();
     const customTheme = useTheme();
     const [openDrawer, setOpenDrawer] = useState(false);
     const [openCart, setOpenCart] = useState(false);
 
-    const { isLoading, error, data } = useQuery('cart', async () => {
-        const res = await fetch('/api/cart');
-        return res.json();
-    });
+    // Query the cart data from the cache
+    const { data } = useQuery<CartItem[], unknown>("cart", () =>
+        queryClient.getQueryData("cart") ?? [],
+        { initialData: [] }
+    );
+
+
     const cartTotal = data?.reduce((acc: number, item: CartItem) => acc + item.price, 0);
 
+
     const handleRemoveItem = (id: string) => {
-        removeItemFromCart.mutate(id);
+        // Get the current cart items from the cache
+        const currentCartItems = queryClient.getQueryData<CartItem[]>("cart") || [];
+
+        // Filter out the item with the specified ID
+        const newCartItems = currentCartItems.filter((item) => item.id !== id);
+
+        // Update the cart items in the cache
+        queryClient.setQueryData("cart", newCartItems);
+
+        // Invalidate the cart query to trigger a re-fetch
+        queryClient.invalidateQueries("cart");
     };
-    const removeItemFromCart = useMutation(async (id: string) => {
-        const response = await fetch(`/api/cart?id=${id}`, {
-            method: "DELETE",
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to remove item from cart");
-        }
-    }, {
-        onSuccess: () => {
-            queryClient.invalidateQueries("cart");
-        }
-    });
-
 
     const handleMenuItemClick = (route: string) => {
         router.push(route);
