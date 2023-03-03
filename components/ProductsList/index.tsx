@@ -1,5 +1,5 @@
 import { Product } from "../../types/Product";
-import { Button, List, Typography } from "@mui/material";
+import { List } from "@mui/material";
 
 import ProductItems from "../ProductItems";
 

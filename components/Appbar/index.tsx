@@ -1,6 +1,7 @@
 import {
     AppBar,
     Badge,
+    Box,
     Divider,
     Drawer,
     IconButton,
@@ -34,6 +35,9 @@ type Props = {
 const SizerToolbar = styled(Toolbar)(({ theme }) => ({
     width: "250px",
     flexShrink: 0,
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "center",
     [theme.breakpoints.down("md")]: {
         width: "200px",
     },
@@ -53,6 +57,8 @@ const TopBar = ({ mode, onClick }: Props) => {
         const res = await fetch('/api/cart');
         return res.json();
     });
+    const cartTotal = data?.reduce((acc: number, item: CartItem) => acc + item.price, 0);
+
 
 
     const handleMenuItemClick = (route: string) => {
@@ -85,16 +91,14 @@ const TopBar = ({ mode, onClick }: Props) => {
                     >
                         Cardápio
                     </Typography>
-
-                    <IconButton color="inherit" aria-label="cart" onClick={() => setOpenCart(true)}>
-                        <Badge badgeContent={true ? 3 : null} color="error">
-                            <ShoppingCartIcon
-                                aria-label="open cart"
-
-                            />
-                        </Badge>
-                    </IconButton>
-                    {/** here implement the cartTotal */}
+                    <Box display="flex" alignItems="center">
+                        <Typography variant="subtitle1" sx={{ mr: 1 }}>{`R$${cartTotal || 0}`}</Typography>
+                        <IconButton color="inherit" aria-label="cart" onClick={() => setOpenCart(true)}>
+                            <Badge badgeContent={data?.length || 0} color="error">
+                                <ShoppingCartIcon aria-label="open cart" />
+                            </Badge>
+                        </IconButton>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -131,7 +135,13 @@ const TopBar = ({ mode, onClick }: Props) => {
 
             <Drawer anchor="right" open={openCart} onClose={() => setOpenCart(false)} >
 
-                <SizerToolbar sx={{ width: "250px" }} />
+                <SizerToolbar sx={{ width: "250px" }} >
+                    <Box display="flex" alignItems="center">
+                        <Typography variant="subtitle1" sx={{ mr: 1 }}>Total</Typography>
+                        <Typography variant="subtitle1" sx={{ mr: 1 }}>{`R$${cartTotal || 0}`}</Typography>
+
+                    </Box>
+                </SizerToolbar>
                 <List>
                     {data?.map((item: CartItem) => (
                         <ListItem key={item.id}>
