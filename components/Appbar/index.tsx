@@ -59,9 +59,10 @@ const TopBar = ({ mode, onClick }: Props) => {
     const [openCart, setOpenCart] = useState(false);
 
     // Query the cart data from the cache
-    const { data } = useQuery<CartItem[], unknown>("cart", () =>
-        queryClient.getQueryData("cart") ?? [],
-        { initialData: [] }
+    const { data } = useQuery<CartItem[], unknown>(
+        "cart",
+        () => queryClient.getQueryData("cart") ?? [],
+        { initialData: undefined }
     );
 
 

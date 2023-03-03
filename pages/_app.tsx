@@ -16,7 +16,13 @@ import Layout from "../components/Layout";
 import TopBar from "../components/Appbar";
 
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 60 * 60 * 1000, // 1 hour
+        },
+    },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -43,26 +49,26 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
     return (
-    <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
 
 
-            <Layout >
-                <TopBar
-                    mode={mode}
-                    onClick={() => {
-                        const newMode = mode === "dark" ? "light" : "dark";
-                        setMode(newMode);
-                        setStoredTheme(newMode);
-                    }}
-                />
-                <Component {...pageProps} />
-            </Layout>
-        </ThemeProvider>
-        
-    </QueryClientProvider>
+                <Layout >
+                    <TopBar
+                        mode={mode}
+                        onClick={() => {
+                            const newMode = mode === "dark" ? "light" : "dark";
+                            setMode(newMode);
+                            setStoredTheme(newMode);
+                        }}
+                    />
+                    <Component {...pageProps} />
+                </Layout>
+            </ThemeProvider>
+
+        </QueryClientProvider>
     );
 }
 export default MyApp;
