@@ -14,7 +14,6 @@ import {
     PaletteMode,
     Toolbar,
     Typography,
-    styled,
     useTheme,
 } from "@mui/material";
 import { useRouter } from "next/router";
@@ -29,43 +28,35 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DeleteIcon from '@mui/icons-material/Delete'
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+import SizerToolbar from "../ToolBar";
+
+import Cart from "../Cart"
+
 type Props = {
     mode: PaletteMode;
     onClick: () => void;
 };
 
 
-const SizerToolbar = styled(Toolbar)(({ theme }) => ({
-    width: "250px",
-    flexShrink: 0,
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "center",
-    [theme.breakpoints.down("md")]: {
-        width: "200px",
-    },
-    [theme.breakpoints.down("sm")]: {
-        width: "100px",
-    },
-}));
-
 
 const TopBar = ({ mode, onClick }: Props) => {
     const queryClient = useQueryClient();
 
     const router = useRouter();
-    const customTheme = useTheme();
+    //const customTheme = useTheme();
+
     const [openDrawer, setOpenDrawer] = useState(false);
+
     const [openCart, setOpenCart] = useState(false);
 
-    // Query the cart data from the cache
+   //Query the cart data from the cache
     const { data } = useQuery<CartItem[], unknown>(
         "cart",
         () => queryClient.getQueryData("cart") ?? [],
         { initialData: undefined }
     );
-
-
+ /* 
+*/
     const cartTotal = data?.reduce((acc: number, item: CartItem) => acc + item.price, 0);
 
 
@@ -123,6 +114,9 @@ const TopBar = ({ mode, onClick }: Props) => {
                     </Box>
                 </Toolbar>
             </AppBar>
+
+            
+
             <Drawer
                 anchor="left"
                 open={openDrawer}
@@ -131,7 +125,11 @@ const TopBar = ({ mode, onClick }: Props) => {
                     keepMounted: true, // Better open performance on mobile.
                 }}
             >
-                <SizerToolbar />
+                <SizerToolbar>
+                    <Box display="flex" alignItems="center">
+                        <Typography variant="subtitle1" sx={{ mr: 1 }}>O Seu Lugar</Typography>
+                    </Box>
+                </SizerToolbar>
                 <List>
                     {menuItems.map((item, index) => (
                         <ListItemButton
@@ -155,6 +153,9 @@ const TopBar = ({ mode, onClick }: Props) => {
                 </List>
             </Drawer>
 
+            <Cart open={openCart} onClose={() => setOpenCart(false)}/>
+            {/** 
+
             <Drawer anchor="right" open={openCart} onClose={() => setOpenCart(false)} >
 
                 <SizerToolbar sx={{ width: "250px" }} >
@@ -176,7 +177,7 @@ const TopBar = ({ mode, onClick }: Props) => {
                         </ListItem>
                     ))}
                 </List>
-            </Drawer>
+            </Drawer>*/}
         </>
     );
 };
